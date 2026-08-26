@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junction Barbershop | Princeton Junction, NJ</title>
+<meta name="description" content="Junction Barbershop — traditional, walk-in barbershop at 33 Princeton Hightstown Rd in Princeton Junction, NJ.">
+<style>
+:root{
+  --bg:#0b0b0b; --panel:#151515; --panel2:#1c1c1c; --gold:#c8a45d;
+  --muted:#a7a7a7; --white:#f7f7f5; --line:#2b2b2b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--white);line-height:1.6}
+a{color:inherit}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;
+  justify-content:space-between;padding:18px 6%;background:rgba(11,11,11,.9);
+  backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)
+}
+.logo{font-weight:900;letter-spacing:1.5px;font-size:18px}.logo span{color:var(--gold)}
+.navlinks{display:flex;gap:28px;list-style:none}.navlinks a{text-decoration:none;color:#ddd;font-size:14px}
+.navlinks a:hover{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 19px;
+  border-radius:7px;text-decoration:none;font-weight:800;border:1px solid transparent;cursor:pointer}
+.btn-gold{background:var(--gold);color:#111}.btn-gold:hover{filter:brightness(1.08)}
+.btn-outline{border-color:#666;color:#fff}.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero{
+  min-height:92vh;display:flex;align-items:center;padding:130px 7% 80px;
+  background:linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.68),rgba(0,0,0,.35)),
+  url("https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1800&q=85") center/cover;
+}
+.hero-inner{max-width:720px}.eyebrow{text-transform:uppercase;letter-spacing:4px;color:var(--gold);font-size:12px;font-weight:900;margin-bottom:18px}
+h1{font-size:clamp(48px,7vw,86px);line-height:.96;margin-bottom:24px;letter-spacing:-2px}
+h1 span{color:var(--gold)}.hero p{max-width:600px;color:#ddd;font-size:18px;margin-bottom:30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.notice{margin-top:22px;color:#cfcfcf;font-size:14px}.notice strong{color:var(--gold)}
+section{padding:92px 7%}.section-head{text-align:center;margin-bottom:45px}.section-head small{color:var(--gold);text-transform:uppercase;letter-spacing:3px;font-weight:900}
+.section-head h2{font-size:42px;margin-top:7px}.section-head p{color:var(--muted);max-width:650px;margin:10px auto 0}
+.info-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px}
+.card .icon{font-size:26px;color:var(--gold)}.card h3{margin:10px 0 8px}.card p{color:var(--muted)}
+.hours{display:grid;gap:9px;margin-top:12px}.row{display:flex;justify-content:space-between;border-bottom:1px solid #252525;padding-bottom:8px;color:#ddd}.closed{color:#777}
+.gallery{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:14px}
+.gallery img{width:100%;height:390px;object-fit:cover;border-radius:10px;display:block}.gallery img:nth-child(2),.gallery img:nth-child(3){height:390px}
+.about{background:#111}.about-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.about img{width:100%;height:520px;object-fit:cover;border-radius:12px}.about h2{font-size:45px;line-height:1.05;margin-bottom:18px}.about h2 span{color:var(--gold)}
+.about p{color:var(--muted);margin-bottom:16px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}.pill{border:1px solid #383838;padding:7px 11px;border-radius:999px;color:#ddd;font-size:13px}
+.visit{background:linear-gradient(135deg,#171717,#0c0c0c)}.visit-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.visit-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:32px}.visit-card h3{font-size:25px;margin-bottom:12px}.visit-card p{color:var(--muted);margin-bottom:16px}
+footer{padding:34px 7%;display:flex;justify-content:space-between;gap:20px;color:#888;border-top:1px solid #1e1e1e}
+footer strong{color:#fff}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal.show{display:flex}.modal-box{max-width:520px;background:#171717;border:1px solid #343434;border-radius:14px;padding:30px;box-shadow:0 25px 80px rgba(0,0,0,.55)}
+.modal-box h3{font-size:30px;margin-bottom:10px}.modal-box p{color:#bbb;margin-bottom:18px}.close{float:right;background:none;border:0;color:#aaa;font-size:26px;cursor:pointer}
+@media(max-width:800px){
+  .navlinks{display:none}.info-grid,.about-grid,.visit-grid,.gallery{grid-template-columns:1fr}
+  .gallery img,.gallery img:nth-child(2),.gallery img:nth-child(3){height:330px}
+  .about img{height:390px}footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">JUNCTION <span>BARBERSHOP</span></div>
+  <ul class="navlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+  <button class="btn btn-gold" onclick="openBooking()">Book / Visit</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Traditional Barbershop • Princeton Junction, NJ</div>
+    <h1>CLASSIC CUTS.<br><span>NO FUSS.</span></h1>
+    <p>Junction Barbershop is a neighborhood barbershop serving Princeton Junction since 1992, known for straightforward, efficient haircuts and a classic walk-in experience.</p>
+    <div class="actions">
+      <button class="btn btn-gold" onclick="openBooking()">Plan Your Visit</button>
+      <a class="btn btn-outline" href="tel:+16097998554">Call (609) 799-8554</a>
+    </div>
+    <div class="notice"><strong>Walk-ins welcome:</strong> the shop is listed as walk-in / first-come, first-served rather than appointment-based.</div>
+  </div>
+</header>
+
+<section id="hours">
+  <div class="section-head">
+    <small>Good to know</small><h2>Before You Visit</h2>
+    <p>Everything below is based on current public business listings; verify details with the shop before publishing a final client site.</p>
+  </div>
+  <div class="info-grid">
+    <div class="card"><div class="icon">✂</div><h3>Traditional Haircuts</h3><p>The public listings describe Junction as a traditional barbershop focused on straightforward haircuts and basic grooming.</p></div>
+    <div class="card"><div class="icon">#</div><h3>Walk-In Service</h3><p>No appointment is required according to current public listings. The shop is described as first-come, first-served.</p></div>
+    <div class="card"><div class="icon">◷</div><h3>Shop Hours</h3>
+      <div class="hours">
+        <div class="row"><span>Monday</span><span class="closed">Closed</span></div>
+        <div class="row"><span>Tuesday</span><span>10:00 AM–6:00 PM</span></div>
+        <div class="row"><span>Wednesday</span><span>10:00 AM–6:00 PM</span></div>
+        <div class="row"><span>Thursday</span><span>10:00 AM–6:00 PM</span></div>
+        <div class="row"><span>Friday</span><span>10:00 AM–6:00 PM</span></div>
+        <div class="row"><span>Saturday</span><span>8:30 AM–4:00 PM</span></div>
+        <div class="row"><span>Sunday</span><span class="closed">Closed</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="section-head"><small>Sample redesign gallery</small><h2>Fresh Cuts</h2><p>These are generic barber images for the redesign concept — replace them with Junction Barbershop's own photos before using the site publicly.</p></div>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=85" alt="Barber giving a haircut">
+    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85" alt="Barbershop interior">
+    <img src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=900&q=85" alt="Haircut detail">
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1200&q=85" alt="Barbershop chair and barber tools">
+    <div>
+      <div class="eyebrow">A neighborhood shop</div>
+      <h2>OVER 30 YEARS OF<br><span>TRADITION.</span></h2>
+      <p>Public business information says Junction Barbershop has been serving the Princeton Junction neighborhood since 1992. Reviews repeatedly describe it as a simple, friendly, efficient neighborhood shop with long-time customers.</p>
+      <div class="pills"><span class="pill">Walk-ins</span><span class="pill">Classic barbershop</span><span class="pill">Family-friendly</span><span class="pill">Free parking</span></div>
+      <button class="btn btn-gold" onclick="openBooking()">Plan Your Visit</button>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="section-head"><small>Find us</small><h2>Come By the Shop</h2><p>33 Princeton Hightstown Rd, Princeton Junction, NJ 08550</p></div>
+  <div class="visit-grid">
+    <div class="visit-card"><h3>Walk In</h3><p>Junction Barbershop is currently listed as a walk-in shop, so there isn't a normal online appointment calendar to book through.</p><button class="btn btn-gold" onclick="openBooking()">How It Works</button></div>
+    <div class="visit-card"><h3>Call the Shop</h3><p>For questions before heading over, call the shop directly.</p><a class="btn btn-outline" href="tel:+16097998554">(609) 799-8554</a></div>
+  </div>
+  <div style="text-align:center;margin-top:25px">
+    <a class="btn btn-gold" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=33+Princeton+Hightstown+Rd%2C+Princeton+Junction%2C+NJ+08550">Get Directions</a>
+  </div>
+</section>
+
+<footer>
+  <div><strong>JUNCTION BARBERSHOP</strong><br>33 Princeton Hightstown Rd, Princeton Junction, NJ 08550</div>
+  <div>(609) 799-8554</div>
+</footer>
+
+<div class="modal" id="bookingModal" onclick="if(event.target===this)closeBooking()">
+  <div class="modal-box">
+    <button class="close" onclick="closeBooking()">×</button>
+    <div class="eyebrow">Booking / Visit</div>
+    <h3>Walk in — no appointment needed.</h3>
+    <p>Current public listings describe Junction Barbershop as a walk-in, first-come, first-served shop. This demo therefore does not pretend there is an online booking calendar.</p>
+    <p><strong>Hours:</strong> Tue–Fri 10 AM–6 PM; Sat 8:30 AM–4 PM. Closed Sun–Mon.</p>
+    <div class="actions">
+      <a class="btn btn-gold" href="tel:+16097998554">Call the Shop</a>
+      <a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=33+Princeton+Hightstown+Rd%2C+Princeton+Junction%2C+NJ+08550">Directions</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function openBooking(){document.getElementById('bookingModal').classList.add('show')}
+function closeBooking(){document.getElementById('bookingModal').classList.remove('show')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBooking()})
+</script>
+</body>
+</html>
